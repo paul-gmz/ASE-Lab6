@@ -38,6 +38,12 @@ const argv = yargs
   .command("delete", "Remove a customer", {
     customerId: customer_id
   })
+
+  .command("update", "Update a customer", {
+    customerId: customer_id,
+    customerName: customer_name,
+    customerEmail: customer_email
+  })
   .help().argv;
 
 // ------------ End - command configuration -----------------
@@ -65,6 +71,25 @@ if (command === "list") {
     {
       headers: { "content-type": "application/json" },
       url: "http://localhost:3000/customer",
+      body: JSON.stringify({
+        customer_id: argv.customerId,
+        customer_name: argv.customerName,
+        customer_email: argv.customerEmail
+      })
+    },
+    (error, response, body) => {
+      if (error) {
+        return console.dir(error);
+      }
+      console.dir(JSON.parse(body));
+    }
+  );
+} else if (command === "update") {
+  console.log(argv.customerId);
+  Request.put(
+    {
+      headers: { "content-type": "application/json" },
+      url: `http://localhost:3000/customer/${argv.customerId}`,
       body: JSON.stringify({
         customer_id: argv.customerId,
         customer_name: argv.customerName,

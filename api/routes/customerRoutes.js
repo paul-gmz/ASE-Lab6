@@ -12,6 +12,6 @@ module.exports = function(app) {
   app
     .route("/customer/:custId")
     .get(customer.getACustomer)
-    //.put()
+    .put(customer.updateCustomer)
     .delete(customer.deleteCustomer);
 };
