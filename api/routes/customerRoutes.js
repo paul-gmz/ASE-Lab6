@@ -9,8 +9,9 @@ module.exports = function(app) {
     .get(customer.getAllCustomers)
     .post(customer.addCustomer);
 
-  app.route("/customer/:custId");
-  //.get()
-  //.put()
-  //.delete();
+  app
+    .route("/customer/:custId")
+    .get(customer.getACustomer)
+    //.put()
+    .delete(customer.deleteCustomer);
 };
