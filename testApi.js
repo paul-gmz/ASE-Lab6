@@ -85,7 +85,6 @@ if (command === "list") {
     }
   );
 } else if (command === "update") {
-  console.log(argv.customerId);
   Request.put(
     {
       headers: { "content-type": "application/json" },
